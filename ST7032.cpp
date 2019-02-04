@@ -28,9 +28,10 @@
 
 #include "ST7032.h"
 #include "Arduino.h"
-#include <Wire.h>
 #if defined(__AVR__)
 #include <avr/pgmspace.h>
+#elif defined(ESP8266) || defined(ESP32)
+#include <pgmspace.h>
 #endif
 
 // private methods
@@ -73,6 +74,11 @@ ST7032::ST7032(int i2c_addr)
 , _i2c_addr((uint8_t)i2c_addr)
 {
 //  begin(16, 1);
+  thisWire = NULL;
+}
+
+void ST7032::setWire(TwoWire* wire) {
+  thisWire = wire;
 }
 
 void ST7032::begin(uint8_t cols, uint8_t lines, uint8_t dotsize) {
@@ -89,8 +95,11 @@ void ST7032::begin(uint8_t cols, uint8_t lines, uint8_t dotsize) {
   if ((dotsize != 0) && (lines == 1)) {
     _displayfunction |= LCD_5x10DOTS;
   }
-  
-  Wire.begin();
+
+  if (thisWire == NULL) {
+    thisWire = &Wire;
+    thisWire->begin();
+  }
   delay(40);               // Wait time >40ms After VDD stable
 
   // finally, set # lines, font size, etc.
@@ -221,18 +230,18 @@ void ST7032::createChar(uint8_t location, uint8_t charmap[]) {
 /*********** mid level commands, for sending data/cmds */
 
 void ST7032::command(uint8_t value) {
-  Wire.beginTransmission(_i2c_addr);
-  Wire.write((uint8_t)0x00);
-  Wire.write(value);
-  Wire.endTransmission();
+  thisWire->beginTransmission(_i2c_addr);
+  thisWire->write((uint8_t)0x00);
+  thisWire->write(value);
+  thisWire->endTransmission();
   delayMicroseconds(27);    // >26.3us
 }
 
 size_t ST7032::write(uint8_t value) {
-  Wire.beginTransmission(_i2c_addr);
-  Wire.write((uint8_t)0x40);
-  Wire.write(value);
-  Wire.endTransmission();
+  thisWire->beginTransmission(_i2c_addr);
+  thisWire->write((uint8_t)0x40);
+  thisWire->write(value);
+  thisWire->endTransmission();
   delayMicroseconds(27);    // >26.3us
 
   return 1;

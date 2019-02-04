@@ -3,6 +3,7 @@
 
 #include <stdint.h>
 #include <Print.h>
+#include <Wire.h>
 
 
 #define ST7032_I2C_DEFAULT_ADDR     0x3E
@@ -90,6 +91,7 @@ public:
 
     void begin(uint8_t cols, uint8_t rows, uint8_t charsize = LCD_5x8DOTS);
 
+    void setWire(TwoWire* wire);
     void setContrast(uint8_t cont);
     void setIcon(uint8_t addr, uint8_t bit);
     void clear();
@@ -128,6 +130,7 @@ private:
     uint8_t _enable_pin; // activated by a HIGH pulse.
     uint8_t _data_pins[8];
 */
+    TwoWire* thisWire;
     uint8_t _displayfunction;
     uint8_t _displaycontrol;
     uint8_t _displaymode;
