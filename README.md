@@ -63,3 +63,4 @@ MIT
 
 # References
 - [I2C液晶のArduinoライブラリ – ST7032](http://ore-kb.net/archives/195)
+- [tomozh/arduino_ST7032](https://github.com/tomozh/arduino_ST7032)
