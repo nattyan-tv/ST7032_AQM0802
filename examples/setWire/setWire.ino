@@ -41,31 +41,24 @@
  http://www.arduino.cc/en/Tutorial/LiquidCrystal
  */
 
-// include the library code:
-//#include <LiquidCrystal.h>
 #include <Wire.h>
 #include <ST7032.h>
 
 ST7032 lcd;
 
 void setup() {
+
 #if defined(ESP32)
-  // assignable pins are depend on the board.
   Wire.begin(25, 26); // SDA, SCL
   lcd.setWire(&Wire);
 #endif
 
-  // set up the LCD's number of columns and rows:
   lcd.begin(16, 2);
   lcd.setContrast(40);
-  // Print a message to the LCD.
   lcd.print("hello, world!");
 }
 
 void loop() {
-  // set the cursor to column 0, line 1
-  // (note: line 1 is the second row, since counting begins with 0):
   lcd.setCursor(0, 1);
-  // print the number of seconds since reset:
   lcd.print(millis()/1000);
 }
