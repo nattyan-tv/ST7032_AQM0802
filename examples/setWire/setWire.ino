@@ -41,10 +41,9 @@
  http://www.arduino.cc/en/Tutorial/LiquidCrystal
  */
 
-#include <Wire.h>
-#include <ST7032.h>
+#include <ST7032_asukiaaa.h>
 
-ST7032 lcd;
+ST7032_asukiaaa lcd;
 
 void setup() {
 

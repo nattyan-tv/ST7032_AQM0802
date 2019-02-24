@@ -6,7 +6,7 @@
 # Datatypes (KEYWORD1)
 #######################################
 
-ST7032	KEYWORD1
+ST7032_asukiaaa	KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)

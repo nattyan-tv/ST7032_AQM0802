@@ -43,9 +43,7 @@
  */
 
 // include the library code:
-//#include <LiquidCrystal.h>
-#include <Wire.h>
-#include <ST7032.h>
+#include <ST7032_asukiaaa.h>
 
 // these constants won't change.  But you can change the size of
 // your LCD using them:
@@ -53,8 +51,7 @@ const int numRows = 2;
 const int numCols = 16;
 
 // initialize the library with the numbers of the interface pins
-//LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
-ST7032 lcd;
+ST7032_asukiaaa lcd;
 
 void setup() {
   // set up the LCD's number of columns and rows: 

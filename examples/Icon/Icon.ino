@@ -15,8 +15,7 @@
  ------------------------
 */
 
-#include <Wire.h>
-#include <ST7032.h>
+#include <ST7032_asukiaaa.h>
 
 
 #define NELEMS(arg) (sizeof(arg) / sizeof((arg)[0]))
@@ -44,7 +43,7 @@ static const ICON_MAP iconMap[] = {
 
 static byte iconTmp[16];
 bool showIcon = true;
-ST7032 lcd;
+ST7032_asukiaaa lcd;
 
 static void setIndexedIcon(uint8_t index, bool show) {
   if((0 <= index) && (index < NELEMS(iconMap))) {
