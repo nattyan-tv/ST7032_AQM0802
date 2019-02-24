@@ -1,8 +1,8 @@
 /*
   ST7032.cpp - Arduino LiquidCrystal compatible library
-  
+
   Original source is Arduino LiquidCrystal liblary
-  
+
   Author:  tomozh@gmail.com
   License: MIT
 
@@ -10,7 +10,7 @@
     2014.10.13 コントラスト値のbit7がBONビットに影響する不具合を修正
     2014.08.23 コンストラクタでI2Cアドレスを設定可能にした
     2013.05.21 1st release
-  
+
  ------------------------
   Arduino        ST7032i
  ------------------------
@@ -19,7 +19,7 @@
   A4(SDA) --*-- SDA
   A5(SCL) --*-- SCL
   GND     ----- GND
-  
+
   *... 10Kohm pull-up
  ------------------------
 
@@ -84,7 +84,7 @@ void ST7032::setWire(TwoWire* wire) {
 void ST7032::begin(uint8_t cols, uint8_t lines, uint8_t dotsize) {
 
   _displayfunction  = LCD_8BITMODE | LCD_1LINE | LCD_5x8DOTS;
-  
+
   if (lines > 1) {
     _displayfunction |= LCD_2LINE;
   }
@@ -112,7 +112,7 @@ void ST7032::begin(uint8_t cols, uint8_t lines, uint8_t dotsize) {
   normalFunctionSet();
 
   // turn the display on with no cursor or blinking default
-//  display();
+  // display();
   _displaycontrol   = 0x00;//LCD_DISPLAYON | LCD_CURSOROFF | LCD_BLINKOFF;
   setDisplayControl(LCD_DISPLAYON | LCD_CURSOROFF | LCD_BLINKOFF);
 
@@ -120,7 +120,7 @@ void ST7032::begin(uint8_t cols, uint8_t lines, uint8_t dotsize) {
   clear();
 
   // Initialize to default text direction (for romance languages)
-//  command(LCD_ENTRYMODESET | _displaymode);
+  // command(LCD_ENTRYMODESET | _displaymode);
   _displaymode      = 0x00;//LCD_ENTRYLEFT | LCD_ENTRYSHIFTDECREMENT;
   setEntryMode(LCD_ENTRYLEFT | LCD_ENTRYSHIFTDECREMENT);
 }
@@ -160,7 +160,7 @@ void ST7032::setCursor(uint8_t col, uint8_t row)
   if ( row > _numlines ) {
     row = _numlines-1;    // we count rows starting w/0
   }
-  
+
   command(LCD_SETDDRAMADDR | (col + row_offsets[row]));
 }
 

@@ -86,61 +86,61 @@
 
 
 class ST7032 : public Print {
-public:
+ public:
 	ST7032(int i2c_addr = ST7032_I2C_DEFAULT_ADDR);
 
-    void begin(uint8_t cols, uint8_t rows, uint8_t charsize = LCD_5x8DOTS);
+  void begin(uint8_t cols, uint8_t rows, uint8_t charsize = LCD_5x8DOTS);
 
-    void setWire(TwoWire* wire);
-    void setContrast(uint8_t cont);
-    void setIcon(uint8_t addr, uint8_t bit);
-    void clear();
-    void home();
+  void setWire(TwoWire* wire);
+  void setContrast(uint8_t cont);
+  void setIcon(uint8_t addr, uint8_t bit);
+  void clear();
+  void home();
 
-    void noDisplay();
-    void display();
-    void noBlink();
-    void blink();
-    void noCursor();
-    void cursor();
-    void scrollDisplayLeft();
-    void scrollDisplayRight();
-    void leftToRight();
-    void rightToLeft();
-    void autoscroll();
-    void noAutoscroll();
+  void noDisplay();
+  void display();
+  void noBlink();
+  void blink();
+  void noCursor();
+  void cursor();
+  void scrollDisplayLeft();
+  void scrollDisplayRight();
+  void leftToRight();
+  void rightToLeft();
+  void autoscroll();
+  void noAutoscroll();
 
-    void createChar(uint8_t location, uint8_t charmap[]);
-    void setCursor(uint8_t col, uint8_t row);
-    virtual size_t write(uint8_t value);
-    void command(uint8_t value);
+  void createChar(uint8_t location, uint8_t charmap[]);
+  void setCursor(uint8_t col, uint8_t row);
+  virtual size_t write(uint8_t value);
+  void command(uint8_t value);
 
-private:
-    void setDisplayControl(uint8_t setBit);
-    void resetDisplayControl(uint8_t resetBit);
-    void setEntryMode(uint8_t setBit);
-    void resetEntryMode(uint8_t resetBit);
-    void normalFunctionSet();
-    void extendFunctionSet();
+ private:
+  void setDisplayControl(uint8_t setBit);
+  void resetDisplayControl(uint8_t resetBit);
+  void setEntryMode(uint8_t setBit);
+  void resetEntryMode(uint8_t resetBit);
+  void normalFunctionSet();
+  void extendFunctionSet();
 
-//  void send(uint8_t, uint8_t);
-/*
+  //  void send(uint8_t, uint8_t);
+  /*
     uint8_t _rs_pin; // LOW: command.   HIGH: character.
     uint8_t _rw_pin; // LOW: write to LCD.  HIGH: read from LCD.
     uint8_t _enable_pin; // activated by a HIGH pulse.
     uint8_t _data_pins[8];
-*/
-    TwoWire* thisWire;
-    uint8_t _displayfunction;
-    uint8_t _displaycontrol;
-    uint8_t _displaymode;
-//  uint8_t _iconfunction;
+  */
+  TwoWire* thisWire;
+  uint8_t _displayfunction;
+  uint8_t _displaycontrol;
+  uint8_t _displaymode;
+  //  uint8_t _iconfunction;
 
-    uint8_t _initialized;
+  uint8_t _initialized;
 
-    uint8_t _numlines;
-    uint8_t _currline;
-	
+  uint8_t _numlines;
+  uint8_t _currline;
+
 	uint8_t _i2c_addr;
 };
 
