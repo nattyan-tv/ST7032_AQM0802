@@ -31,6 +31,7 @@ autoscroll	KEYWORD2
 noAutoscroll	KEYWORD2
 createChar	KEYWORD2
 setCursor	KEYWORD2
+setWire	KEYWORD2
 command	KEYWORD2
 
 ######################################
