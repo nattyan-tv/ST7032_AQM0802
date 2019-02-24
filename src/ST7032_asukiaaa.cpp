@@ -28,11 +28,6 @@
 
 #include <Arduino.h>
 #include "ST7032_asukiaaa.h"
-#if defined(__AVR__)
-#include <avr/pgmspace.h>
-#elif defined(ESP8266) || defined(ESP32)
-#include <pgmspace.h>
-#endif
 
 // private methods
 
