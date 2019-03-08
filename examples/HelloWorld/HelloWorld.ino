@@ -51,6 +51,8 @@ void setup() {
   // set up the LCD's number of columns and rows: 
   lcd.begin(16, 2);
   lcd.setContrast(40);
+  // If lcd become black, try reduced value for contrast
+  // lcd.setContrast(10);
   // Print a message to the LCD.
   lcd.print("hello, world!");
 }

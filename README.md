@@ -29,7 +29,9 @@ ST7032_asukiaaa lcd;
 
 void setup() {
   lcd.begin(16, 2); // LCD columns and rows.
-  lcd.setContrast(30);
+  lcd.setContrast(40);
+  // If lcd become black, reduced value for contrast
+  // lcd.setContrast(10);
   lcd.print("hello, world!");
 }
 
