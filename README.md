@@ -3,6 +3,20 @@
 A library to control ST7032 on a LiquidCrystal.
 This library was forked from [tomozh/arduino_ST7032](https://github.com/tomozh/arduino_ST7032).
 
+# Install
+
+## Arduino IDE
+You can install via library manager.
+Search `ST7032` on the library manager
+
+## PlatformIO
+
+Add this library to dependencies on `platformio.ini`.
+```
+lib_deps =
+  ST7032_asukiaaa
+```
+
 # Connection
 
 ST7032 | Arduino
