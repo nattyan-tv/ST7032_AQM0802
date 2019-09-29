@@ -62,7 +62,7 @@ static void setIndexedIcon(uint8_t index, bool show) {
 
 void setup(){
   lcd.begin(16, 2, LCD_5x8DOTS);
-  lcd.setContrast(40);
+  lcd.setContrast(30);
   lcd.print("ST7032 ICON TEST");
 }
 

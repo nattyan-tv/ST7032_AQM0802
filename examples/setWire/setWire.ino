@@ -8,7 +8,7 @@ void setup() {
   lcd.setWire(&Wire);
 #endif
   lcd.begin(16, 2);
-  lcd.setContrast(40);
+  lcd.setContrast(30);
   lcd.print("hello, world!");
 }
 
