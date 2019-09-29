@@ -75,7 +75,7 @@ You can set customized wire.(See [setWire](./examples/setWire/setWire.ino))
 See [examples](./examples) to know other usage.
 
 # License
-Mainly MIT but some files on examples are CC.
+MIT
 
 # References
 - [I2C液晶のArduinoライブラリ – ST7032](http://ore-kb.net/archives/195)
