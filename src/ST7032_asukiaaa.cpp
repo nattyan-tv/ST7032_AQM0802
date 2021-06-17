@@ -118,6 +118,8 @@ void ST7032_asukiaaa::begin(uint8_t cols, uint8_t lines, uint8_t dotsize) {
   // command(LCD_ENTRYMODESET | _displaymode);
   _displaymode      = 0x00;//LCD_ENTRYLEFT | LCD_ENTRYSHIFTDECREMENT;
   setEntryMode(LCD_ENTRYLEFT | LCD_ENTRYSHIFTDECREMENT);
+
+  setContrast(30);
 }
 
 void ST7032_asukiaaa::setContrast(uint8_t cont)
