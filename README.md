@@ -1,35 +1,5 @@
-# ST7032_asukiaaa
-
-A library to control ST7032 on a LiquidCrystal.
-This library was forked from [tomozh/arduino_ST7032](https://github.com/tomozh/arduino_ST7032).
-
-# Install
-
-## Arduino IDE
-You can install via library manager.
-Search `ST7032` on the library manager
-
-## PlatformIO
-
-Add this library to dependencies on `platformio.ini`.
-```
-lib_deps =
-  ST7032_asukiaaa
-```
-
-# Connection
-
-ST7032 | Arduino
--------|--------
-VDD | 3V3
-RES | 3V3
-SDA* | SDA(A4 for Uno)
-SCL* | SCL(A5 for Uno)
-GND | GND
-
-*... 10Kohm pull-up is needed.
-
-You can check SDA and SCL for your board on [Wire page](https://www.arduino.cc/en/reference/wire).
+# ST7032_AQM0802
+forked by `ST7032_asukiaaa`
 
 # Usage
 
@@ -78,5 +48,4 @@ See [examples](./examples) to know other usage.
 MIT
 
 # References
-- [I2C液晶のArduinoライブラリ – ST7032](http://ore-kb.net/archives/195)
-- [tomozh/arduino_ST7032](https://github.com/tomozh/arduino_ST7032)
+- [asukiaaa/ST7032_asukiaaa](https://github.com/asukiaaa/ST7032_asukiaaa)
