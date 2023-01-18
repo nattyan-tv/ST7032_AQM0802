@@ -38,31 +38,31 @@
 
 // private methods
 
-void ST7032_asukiaaa::setDisplayControl(uint8_t setBit) {
+void ST7032_AQM0802::setDisplayControl(uint8_t setBit) {
   _displaycontrol |= setBit;
   command(LCD_DISPLAYCONTROL | _displaycontrol);
 }
 
-void ST7032_asukiaaa::resetDisplayControl(uint8_t resetBit) {
+void ST7032_AQM0802::resetDisplayControl(uint8_t resetBit) {
   _displaycontrol &= ~resetBit;
   command(LCD_DISPLAYCONTROL | _displaycontrol);
 }
 
-void ST7032_asukiaaa::setEntryMode(uint8_t setBit) {
+void ST7032_AQM0802::setEntryMode(uint8_t setBit) {
   _displaymode |= setBit;
   command(LCD_ENTRYMODESET | _displaymode);
 }
 
-void ST7032_asukiaaa::resetEntryMode(uint8_t resetBit) {
+void ST7032_AQM0802::resetEntryMode(uint8_t resetBit) {
   _displaymode &= ~resetBit;
   command(LCD_ENTRYMODESET | _displaymode);
 }
 
-void ST7032_asukiaaa::normalFunctionSet() {
+void ST7032_AQM0802::normalFunctionSet() {
   command(LCD_FUNCTIONSET | _displayfunction);
 }
 
-void ST7032_asukiaaa::extendFunctionSet() {
+void ST7032_AQM0802::extendFunctionSet() {
   command(LCD_FUNCTIONSET | _displayfunction | LCD_EX_INSTRUCTION);
 }
 
@@ -70,7 +70,7 @@ void ST7032_asukiaaa::extendFunctionSet() {
 // public methods
 
 
-ST7032_asukiaaa::ST7032_asukiaaa(int i2c_addr)
+ST7032_AQM0802::ST7032_AQM0802(int i2c_addr)
 : _displaycontrol(0x00)
 , _displaymode(0x00)
 , _i2c_addr((uint8_t)i2c_addr)
@@ -79,24 +79,19 @@ ST7032_asukiaaa::ST7032_asukiaaa(int i2c_addr)
   thisWire = NULL;
 }
 
-void ST7032_asukiaaa::setWire(TwoWire* wire) {
+void ST7032_AQM0802::setWire(TwoWire* wire) {
   thisWire = wire;
 }
 
-void ST7032_asukiaaa::begin(uint8_t cols, uint8_t lines, uint8_t dotsize) {
+void ST7032_AQM0802::begin() {
 
   _displayfunction  = LCD_8BITMODE | LCD_1LINE | LCD_5x8DOTS;
 
   if (lines > 1) {
     _displayfunction |= LCD_2LINE;
   }
-  _numlines = lines;
+  _numlines = 2;
   _currline = 0;
-
-  // for some 1 line displays you can select a 10 pixel high font
-  if ((dotsize != 0) && (lines == 1)) {
-    _displayfunction |= LCD_5x10DOTS;
-  }
 
   if (thisWire == NULL) {
     thisWire = &Wire;
@@ -129,7 +124,7 @@ void ST7032_asukiaaa::begin(uint8_t cols, uint8_t lines, uint8_t dotsize) {
   setContrast(30);
 }
 
-void ST7032_asukiaaa::setContrast(uint8_t cont)
+void ST7032_AQM0802::setContrast(uint8_t cont)
 {
   extendFunctionSet();
   command(LCD_EX_CONTRASTSETL | (cont & 0x0f));                     // Contrast set
@@ -137,7 +132,7 @@ void ST7032_asukiaaa::setContrast(uint8_t cont)
   normalFunctionSet();
 }
 
-void ST7032_asukiaaa::setIcon(uint8_t addr, uint8_t bit) {
+void ST7032_AQM0802::setIcon(uint8_t addr, uint8_t bit) {
   extendFunctionSet();
   command(LCD_EX_SETICONRAMADDR | (addr & 0x0f));                       // ICON address
   write(bit);
@@ -145,19 +140,19 @@ void ST7032_asukiaaa::setIcon(uint8_t addr, uint8_t bit) {
 }
 
 /********** high level commands, for the user! */
-void ST7032_asukiaaa::clear()
+void ST7032_AQM0802::clear()
 {
   command(LCD_CLEARDISPLAY);  // clear display, set cursor position to zero
   delayMicroseconds(2000);  // this command takes a long time!
 }
 
-void ST7032_asukiaaa::home()
+void ST7032_AQM0802::home()
 {
   command(LCD_RETURNHOME);  // set cursor position to zero
   delayMicroseconds(2000);  // this command takes a long time!
 }
 
-void ST7032_asukiaaa::setCursor(uint8_t col, uint8_t row)
+void ST7032_AQM0802::setCursor(uint8_t col, uint8_t row)
 {
   const int row_offsets[] = { 0x00, 0x40, 0x14, 0x54 };
 
@@ -169,61 +164,61 @@ void ST7032_asukiaaa::setCursor(uint8_t col, uint8_t row)
 }
 
 // Turn the display on/off (quickly)
-void ST7032_asukiaaa::noDisplay() {
+void ST7032_AQM0802::noDisplay() {
   resetDisplayControl(LCD_DISPLAYON);
 }
-void ST7032_asukiaaa::display() {
+void ST7032_AQM0802::display() {
   setDisplayControl(LCD_DISPLAYON);
 }
 
 // Turns the underline cursor on/off
-void ST7032_asukiaaa::noCursor() {
+void ST7032_AQM0802::noCursor() {
   resetDisplayControl(LCD_CURSORON);
 }
-void ST7032_asukiaaa::cursor() {
+void ST7032_AQM0802::cursor() {
   setDisplayControl(LCD_CURSORON);
 }
 
 // Turn on and off the blinking cursor
-void ST7032_asukiaaa::noBlink() {
+void ST7032_AQM0802::noBlink() {
   resetDisplayControl(LCD_BLINKON);
 }
-void ST7032_asukiaaa::blink() {
+void ST7032_AQM0802::blink() {
   setDisplayControl(LCD_BLINKON);
 }
 
 // These commands scroll the display without changing the RAM
-void ST7032_asukiaaa::scrollDisplayLeft(void) {
+void ST7032_AQM0802::scrollDisplayLeft(void) {
   command(LCD_CURSORSHIFT | LCD_DISPLAYMOVE | LCD_MOVELEFT);
 }
 
-void ST7032_asukiaaa::scrollDisplayRight(void) {
+void ST7032_AQM0802::scrollDisplayRight(void) {
   command(LCD_CURSORSHIFT | LCD_DISPLAYMOVE | LCD_MOVERIGHT);
 }
 
 // This is for text that flows Left to Right
-void ST7032_asukiaaa::leftToRight(void) {
+void ST7032_AQM0802::leftToRight(void) {
   setEntryMode(LCD_ENTRYLEFT);
 }
 
 // This is for text that flows Right to Left
-void ST7032_asukiaaa::rightToLeft(void) {
+void ST7032_AQM0802::rightToLeft(void) {
   resetEntryMode(LCD_ENTRYLEFT);
 }
 
 // This will 'right justify' text from the cursor
-void ST7032_asukiaaa::autoscroll(void) {
+void ST7032_AQM0802::autoscroll(void) {
   setEntryMode(LCD_ENTRYSHIFTINCREMENT);
 }
 
 // This will 'left justify' text from the cursor
-void ST7032_asukiaaa::noAutoscroll(void) {
+void ST7032_AQM0802::noAutoscroll(void) {
   resetEntryMode(LCD_ENTRYSHIFTINCREMENT);
 }
 
 // Allows us to fill the first 8 CGRAM locations
 // with custom characters
-void ST7032_asukiaaa::createChar(uint8_t location, uint8_t charmap[]) {
+void ST7032_AQM0802::createChar(uint8_t location, uint8_t charmap[]) {
   location &= 0x7; // we only have 8 locations 0-7
   command(LCD_SETCGRAMADDR | (location << 3));
   for (int i=0; i<8; i++) {
@@ -233,7 +228,7 @@ void ST7032_asukiaaa::createChar(uint8_t location, uint8_t charmap[]) {
 
 /*********** mid level commands, for sending data/cmds */
 
-void ST7032_asukiaaa::command(uint8_t value) {
+void ST7032_AQM0802::command(uint8_t value) {
   thisWire->beginTransmission(_i2c_addr);
   thisWire->write((uint8_t)0x00);
   thisWire->write(value);
@@ -241,7 +236,7 @@ void ST7032_asukiaaa::command(uint8_t value) {
   delayMicroseconds(27);    // >26.3us
 }
 
-size_t ST7032_asukiaaa::write(uint8_t value) {
+size_t ST7032_AQM0802::write(uint8_t value) {
   thisWire->beginTransmission(_i2c_addr);
   thisWire->write((uint8_t)0x40);
   thisWire->write(value);

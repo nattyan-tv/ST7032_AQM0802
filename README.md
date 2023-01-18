@@ -7,39 +7,20 @@ forked by `ST7032_asukiaaa`
 See [HelloWorld](./examples/HelloWorld/HelloWorld.ino).
 
 ```c
-#include <ST7032_asukiaaa.h>
+#include <ST7032_AQM0802.h>
 
-ST7032_asukiaaa lcd;
+ST7032_AQM0802 lcd;
 
 void setup() {
-  lcd.begin(16, 2); // LCD columns and rows.
-  lcd.setContrast(40);
+  lcd.begin();
   // If lcd become black, reduced value for contrast
-  // lcd.setContrast(10);
-  lcd.print("hello, world!");
+  lcd.print("TIME:");
 }
 
 void loop() {
   lcd.setCursor(0, 1);
   lcd.print(millis()/1000);
 }
-```
-
-## Set slave address
-You can specify slave address for a LCD.
-
-```c
-ST7032_asukiaaa lcd(0x3E);
-```
-
-## Set wire
-You can set customized wire.(See [setWire](./examples/setWire/setWire.ino))
-
-```c
-#if defined(ESP32)
-  Wire.begin(25, 26); // SDA, SCL
-  lcd.setWire(&Wire);
-#endif
 ```
 
 See [examples](./examples) to know other usage.

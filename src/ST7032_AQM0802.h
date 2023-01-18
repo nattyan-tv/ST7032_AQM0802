@@ -1,5 +1,5 @@
-#ifndef __ST7032_ASUKIAAA_H__
-#define __ST7032_ASUKIAAA_H__
+#ifndef __ST7032_AQM0802_H__
+#define __ST7032_AQM0802_H__
 
 #include <stdint.h>
 #include <Print.h>
@@ -85,11 +85,11 @@
 #define LCD_RAB_3_75            0x07        // 1+(Rb/Ra)=3.75
 
 
-class ST7032_asukiaaa : public Print {
+class ST7032_AQM0802 : public Print {
  public:
-	ST7032_asukiaaa(int i2c_addr = ST7032_I2C_DEFAULT_ADDR);
+	ST7032_AQM0802(int i2c_addr = ST7032_I2C_DEFAULT_ADDR);
 
-  void begin(uint8_t cols, uint8_t rows, uint8_t charsize = LCD_5x8DOTS);
+  void begin();
 
   void setWire(TwoWire* wire);
   void setContrast(uint8_t cont);
