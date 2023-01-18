@@ -1,4 +1,12 @@
 /*
+  ST7032_AQM0802.cpp - Arduino Library
+  
+  Author: nattyan-tv
+  License: MITライセンスを継承
+*/
+
+//// Original ////
+/*
   ST7032_asukiaaa.cpp - Arduino LiquidCrystal compatible library
 
   Original source is Arduino LiquidCrystal liblary
@@ -22,12 +30,11 @@
 
   *... 10Kohm pull-up
  ------------------------
-
 */
 
 
 #include <Arduino.h>
-#include "ST7032_asukiaaa.h"
+#include "ST7032_AQM0802.h"
 
 // private methods
 
