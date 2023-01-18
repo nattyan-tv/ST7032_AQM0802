@@ -3,8 +3,9 @@ forked by `ST7032_asukiaaa`
 
 # Usage
 
-## Hello world
-See [HelloWorld](./examples/HelloWorld/HelloWorld.ino).
+Include `ST7032_AQM0802.h`.
+
+## Examle
 
 ```c
 #include <ST7032_AQM0802.h>
@@ -14,6 +15,7 @@ ST7032_AQM0802 lcd;
 void setup() {
   lcd.begin();
   // If lcd become black, reduced value for contrast
+  // Default value is 30.
   lcd.print("TIME:");
 }
 
